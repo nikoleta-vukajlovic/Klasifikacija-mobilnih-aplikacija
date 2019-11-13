@@ -1,0 +1,247 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper]{article}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8]{inputenc} % make weird characters work
+\usepackage{graphicx}
+
+\usepackage[english,serbian]{babel}
+%\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
+
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+\usepackage{listings}
+
+%\newtheorem{primer}{Пример}[section] %ćirilični primer
+\newtheorem{primer}{Primer}[section]
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\scriptsize\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=1000,                % start line enumeration with line 1000
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Python,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\begin{document}
+
+\title{Klasifikacija mobilnih aplikacija\\ \small{Seminarski rad u okviru kursa\\Istrazivanje podataka\\ Matematicki fakultet}}
+
+\author{Vukajlovic Nikoleta}
+
+%\date{~avgust 2019.}
+
+\maketitle
+
+\abstract{
+U ovom radu su dati rezultati istrazivanja skupa podataka \italic{Mobile App Statistics}. Opisana je struktura skupa podataka, zatim na koji nacin je on obradjen, kao i sama klasifikacija kao glavni zadatak ovog rada. }
+
+\tableofcontents
+
+\newpage
+
+\section{Opis skupa podataka}
+\label{sec:opis_skupa_podataka}
+
+\section{Korisceni alati}
+\label{sec:korisceni_alati}
+
+Reference koje se koriste u ovom tekstu zadate su u datoteci {\em seminarski.bib}. Prevođenje u pdf format u Linux okruženju može se uraditi na sledeći način:
+\begin{verbatim}
+pdflatex TemaImePrezime.tex 
+bibtex TemaImePrezime.aux 
+pdflatex TemaImePrezime.tex 
+pdflatex TemaImePrezime.tex 
+\end{verbatim}
+Prvo latexovanje je neophodno da bi se generisao {\em .aux} fajl. {\em bibtex} proizvodi odgovarajući {\em .bbl} fajl koji se koristi za generisanje literature. 
+Potrebna su dva prolaza (dva puta pdflatex) da bi se reference ubacile u tekst (tj da ne bi ostali znakovi pitanja umesto referenci). Dodavanjem novih referenci potrebno je ponoviti ceo postupak.  
+
+\section{Klasifikacija}
+\label{klasifikacija}
+
+Slike i tabele treba da budu u svom okruženju, sa odgovarajućim naslovima, obeležene labelom da koje omogućava referenciranje. 
+
+\begin{primer} Ovako se ubacuje slika. Obratiti pažnju da je dodato i 
+\begin{verbatim}
+\usepackage{graphicx}
+\end{verbatim}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.75]{panda.jpg}
+\end{center}
+\caption{Pande}
+\label{fig:pande}
+\end{figure}
+
+Na svaku sliku neophodno je referisati se negde u tekstu. Na primer, na slici \ref{fig:pande} prikazane su pande. 
+\end{primer}
+
+\begin{primer} I tabele treba da budu u svom okruženju, i na njih je neophodno referisati se u tekstu. Na primer, u tabeli \ref{tab:tabela1} su prikazana različita poravnanja u tabelama.
+
+\begin{table}[h!]
+\begin{center}
+\caption{Razlčita poravnanja u okviru iste tabele ne treba koristiti jer su nepregledna.}
+\begin{tabular}{|c|l|r|} \hline
+centralno poravnanje& levo poravnanje& desno poravnanje\\ \hline
+a &b&c\\ \hline
+d &e&f\\ \hline
+\end{tabular}
+\label{tab:tabela1}
+\end{center}
+\end{table}
+
+\end{primer}
+
+\section{K\^{o}d i paket listings}
+Za ubacivanje koda koristite paket \textbf{listings}:
+\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}
+
+\begin{primer}
+Primer ubacivanja koda za programski jezik Python dat je kroz listing \ref{simple}. Za neki drugi programski jezik, treba podesiti odgvarajući programski jezik u okviru defnisanja stila.
+\end{primer}
+\begin{lstlisting}[caption={Primer ubacivanja koda u tekst},frame=single, label=simple]
+# This program adds up integers in the command line
+import sys
+try:
+    total = sum(int(arg) for arg in sys.argv[1:])
+    print 'sum =', total
+except ValueError:
+    print 'Please supply integer arguments'
+\end{lstlisting}
+
+
+\section{Prvi naslov}
+\label{sec:naslov1}
+
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+
+\subsection{Prvi podnaslov}
+\label{subsec:podnaslov1}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{Drugi podnaslov}
+\label{subsec:podnaslov2}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovN}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\section{n-ti naslov}
+\label{sec:naslovN}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovK}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovM}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+
+\section{Zaključak}
+\label{sec:zakljucak}
+
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+
+
+\addcontentsline{toc}{section}{Literatura}
+\appendix
+\bibliography{seminarski} 
+\bibliographystyle{plain}
+
+\appendix
+\section{Dodatak}
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+
+
+\end{document}
